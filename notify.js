@@ -1,17 +1,23 @@
-var notify = (function () {
+var NotificationHandler = (function () {
     "use strict";
     var notifySpace, notify, theBackgroundColor;
+    NotificationHandler = function(opacity) {
+      this.opacity = opacity;
 
-    notify = function (message, type) {
-        if (!document.getElementById('notify-location')) {
-            notifySpace = document.createElement('div');
-            notifySpace.id = 'notify-location';
-            notifySpace.style.top = '10px';
-            notifySpace.style.right = '10px';
-            notifySpace.style.position = 'fixed';
+      if (!document.getElementById('notify-location')) {
+          this.notifySpace = document.createElement('div');
+          this.notifySpace.id = 'notify-location';
 
-            document.body.appendChild(notifySpace);
-        }
+          document.body.appendChild(this.notifySpace);
+      } else {
+        this.notifySpace = document.getElementById('notify-location');
+      }
+      this.notifySpace.style.top = '10px';
+      this.notifySpace.style.right = '10px';
+      this.notifySpace.style.position = 'fixed';
+    };
+
+    NotificationHandler.prototype.notify = function (message, type) {
 
         switch (type) {
         case 'failure':
@@ -33,8 +39,14 @@ var notify = (function () {
         inner.style.borderRadius = '3px';
         inner.style.margin = '2px';
 
-        notifySpace.appendChild(inner);
-        setTimeout(function () {notifySpace.removeChild(inner); }, 1500);
+        this.notifySpace.appendChild(inner);
+
+        var destroyCurrent = (function(){
+          this.notifySpace.removeChild(inner);
+        }).bind(this);
+
+        setTimeout(destroyCurrent, 1500);
     };
-    return notify;
+
+    return NotificationHandler;
 })();
