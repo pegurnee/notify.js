@@ -2,7 +2,7 @@ var NotificationHandler = (function () {
     "use strict";
     var notifySpace, notify, theBackgroundColor;
     NotificationHandler = function(opacity) {
-      this.opacity = opacity;
+      this.opacity = opacity || '.3';
 
       if (!document.getElementById('notify-location')) {
           this.notifySpace = document.createElement('div');
@@ -12,22 +12,22 @@ var NotificationHandler = (function () {
       } else {
         this.notifySpace = document.getElementById('notify-location');
       }
+
       this.notifySpace.style.top = '10px';
       this.notifySpace.style.right = '10px';
       this.notifySpace.style.position = 'fixed';
     };
 
     NotificationHandler.prototype.notify = function (message, type) {
-
         switch (type) {
         case 'failure':
-            theBackgroundColor = 'rgba(200, 0, 25, .3)';
+            theBackgroundColor = `rgba(200, 0, 25, ${this.opacity})`; //'rgba(200, 0, 25, ${this.opacity})';
             break;
         case 'success':
-            theBackgroundColor = 'rgba(0, 200, 25, .3)';
+            theBackgroundColor = `rgba(0, 200, 25, ${this.opacity})`;
             break;
         default:
-            theBackgroundColor = 'rgba(100, 100, 25, .3)';
+            theBackgroundColor = `rgba(100, 100, 25, ${this.opacity})`;
         }
 
         var inner = document.createElement('div');
