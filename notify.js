@@ -1,9 +1,9 @@
 var NotificationHandler = (function () {
     "use strict";
-    var notifySpace, notify, theBackgroundColor;
-    NotificationHandler = function(opacity, timeout) {
+    
+    NotificationHandler = function(opacity, timeDelay) {
       this.opacity = opacity || '.3';
-      this.timeout = timeout || 1500;
+      this.timeDelay = timeDelay || 1500;
 
       if (!document.getElementById('notify-location')) {
           this.notifySpace = document.createElement('div');
@@ -20,6 +20,8 @@ var NotificationHandler = (function () {
     };
 
     NotificationHandler.prototype.notify = function (message, type) {
+      var theBackgroundColor;
+
         switch (type) {
         case 'failure':
             theBackgroundColor = `rgba(200, 0, 25, ${this.opacity})`; //'rgba(200, 0, 25, ${this.opacity})';
@@ -45,10 +47,18 @@ var NotificationHandler = (function () {
         var destroyCurrent = (function(){
           this.notifySpace.removeChild(inner);
         }).bind(this);
-        var timing = this.timeout;
+        var delay = this.timeDelay;
 
-        setTimeout(destroyCurrent, timing);
+        setTimeout(destroyCurrent, delay);
     };
+
+    NotificationHandler.prototype.setDeley = function(timeDelay) {
+      this.timeDelay = timeDelay;
+    }
+
+    NotificationHandler.prototype.setOpacity = function(opacity) {
+      this.opacity = opacity;
+    }
 
     return NotificationHandler;
 })();
