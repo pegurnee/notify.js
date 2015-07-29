@@ -1,4 +1,4 @@
-var notify = (function (document) {
+var notify = (function () {
     "use strict";
     var notifySpace, notify, theBackgroundColor;
 
@@ -37,4 +37,4 @@ var notify = (function (document) {
         setTimeout(function () {notifySpace.removeChild(inner); }, 1500);
     };
     return notify;
-}(document));
+})();
