@@ -1,8 +1,9 @@
 var NotificationHandler = (function () {
     "use strict";
     var notifySpace, notify, theBackgroundColor;
-    NotificationHandler = function(opacity) {
+    NotificationHandler = function(opacity, timeout) {
       this.opacity = opacity || '.3';
+      this.timeout = timeout || 1500;
 
       if (!document.getElementById('notify-location')) {
           this.notifySpace = document.createElement('div');
@@ -44,8 +45,9 @@ var NotificationHandler = (function () {
         var destroyCurrent = (function(){
           this.notifySpace.removeChild(inner);
         }).bind(this);
+        var timing = this.timeout;
 
-        setTimeout(destroyCurrent, 1500);
+        setTimeout(destroyCurrent, timing);
     };
 
     return NotificationHandler;
