@@ -1,0 +1,23 @@
+{
+  "name": "notify",
+  "version": "0.0.1",
+  "description": "a little notification plugin for browsers",
+  "main": "notify.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pegurnee/notify.js.git"
+  },
+  "keywords": [
+    "browser",
+    "notification"
+  ],
+  "author": "Eddie Gurnee <eddie.gurnee@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pegurnee/notify.js/issues"
+  },
+  "homepage": "https://github.com/pegurnee/notify.js#readme"
+}
